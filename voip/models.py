@@ -6,7 +6,10 @@ class Number(models.Model):
     description = models.CharField(max_length=64, null=False, blank=False)
     record = models.BooleanField(default=False, null=False, blank=True)
 
-class Calls(models.Model):
+    def __str__(self):
+        return self.description
+
+class Call(models.Model):
     number = models.ForeignKey(Number, related_name='calls', blank=False, null=True, on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add = True, null=False, blank=False)
     updated_at = models.DateTimeField(auto_now = True, null=False, blank=False)
@@ -15,3 +18,7 @@ class Calls(models.Model):
     caller_number = models.CharField(max_length=32, blank=True, null=True)
     caller_name = models.CharField(max_length=32, blank=True, null=True)
     duration = models.IntegerField(blank=True, null=True)
+    recording_url = models.CharField(max_length=128, blank=True, null=True)
+
+    def __str__(self):
+        return "{}-call-{}".format(self.number.description, self.id)

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<Response>
 {% if number.record %}
-    <Play>http:///localhost:8000/static/big_brother.mp3</Play>
+    <Play>http://localhost:8000/static/big_brother.mp3</Play>
     <Dial>
         <Number
-         statusCallbackEvent="initiated ringing answered completed"
+         statusCallbackEvent="completed"
          statusCallback="http://localhost:8000/status/{{ call.id }}"
          recordStatusCallback="http://localhost:8000/record/{{ call.id }}"
          statusCallbackMethod="POST">
@@ -11,10 +12,9 @@
         </Number>
     </Dial>
 {% else %}
-<Response>
     <Dial>
         <Number
-         statusCallbackEvent="initiated ringing answered completed"
+         statusCallbackEvent="completed"
          statusCallback="http://localhost:8000/status/{{ call.id }}"
          statusCallbackMethod="POST">
             {{ number.forwarding_number }}

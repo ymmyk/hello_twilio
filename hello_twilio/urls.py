@@ -23,4 +23,5 @@ urlpatterns = [
     path('', voip.views.index),
     path('call', voip.views.call),
     path('status/<int:call_id>', voip.views.status),
+    path('record/<int:call_id>', voip.views.record),
 ]
